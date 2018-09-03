@@ -1,0 +1,12 @@
+.button {
+  background: orange;
+  color: whitesmoke;
+  display: inline;
+  border-radius: 12px;
+  margin: 22px;
+  padding: 0 12px;
+}
+
+.button:hover {
+  border: solid;
+}
