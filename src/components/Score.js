@@ -1,12 +1,17 @@
 import React, { Component } from 'react'
-import './css/score.css'
+import styled from 'styled-components'
+
+const StyledScore = styled.span`
+  color: blue;
+  font-size: 32px;
+`
 
 export default class Score extends Component {
   render() {
     return (
-      <div className="score">
+      <StyledScore>
         <h1>{this.props.value}</h1>
-      </div>
+      </StyledScore>
     )
   }
 }
