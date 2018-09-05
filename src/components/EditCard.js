@@ -12,14 +12,14 @@ const Score = styled.span`
   font-size: 32px;
 `
 
-export default class PlayerCard extends Component {
+export default class EditCard extends Component {
   render() {
     const { title, score, onUpdate } = this.props
     return (
       <div>
         <PlayerName>{title}</PlayerName>
         <Score>{score}</Score>
-        <PlayerButtonBar handleClick={onUpdate} />
+        <PlayerButtonBar onClick={onUpdate} />
       </div>
     )
   }

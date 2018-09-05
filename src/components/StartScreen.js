@@ -38,7 +38,7 @@ export default class StartScreen extends Component {
   renderWarningOrPlaybutton() {
     const { players, onStartGame } = this.props
     return players.length ? (
-      <Button handleClick={onStartGame}>Play!</Button>
+      <Button onClick={onStartGame}>Play!</Button>
     ) : (
       <div>Please add one player and hit Enter-Button</div>
     )

@@ -27,15 +27,15 @@ const Btn = styled.button`
 
 export default class PointButtonBar extends Component {
   render() {
-    const { handleClick } = this.props
+    const { onClick } = this.props
     return (
       <StyledPointButtonBar>
-        <Btn onClick={() => handleClick(-10)}>-10</Btn>
-        <Btn onClick={() => handleClick(-5)}>-5</Btn>
-        <Btn onClick={() => handleClick(-1)}>-1</Btn>
-        <Btn onClick={() => handleClick(+1)}>+1</Btn>
-        <Btn onClick={() => handleClick(+5)}>+5</Btn>
-        <Btn onClick={() => handleClick(+10)}>+10</Btn>
+        <Btn onClick={() => onClick(-10)}>-10</Btn>
+        <Btn onClick={() => onClick(-5)}>-5</Btn>
+        <Btn onClick={() => onClick(-1)}>-1</Btn>
+        <Btn onClick={() => onClick(+1)}>+1</Btn>
+        <Btn onClick={() => onClick(+5)}>+5</Btn>
+        <Btn onClick={() => onClick(+10)}>+10</Btn>
       </StyledPointButtonBar>
     )
   }

@@ -18,7 +18,7 @@ const StyledButton = styled.button`
 export default class Button extends Component {
   render() {
     return (
-      <StyledButton onClick={this.props.handleClick}>
+      <StyledButton onClick={this.props.onClick}>
         <h1>{this.props.children}</h1>
       </StyledButton>
     )

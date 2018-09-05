@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import Button from './Button'
-import PlayerCard from './PlayerCard'
+import EditCard from './EditCard'
 
 export default class GameScreen extends Component {
   render() {
@@ -9,15 +9,15 @@ export default class GameScreen extends Component {
       <React.Fragment>
         <h2>Score keeper</h2>
         {players.map((player, index) => (
-          <PlayerCard
+          <EditCard
             key={index}
             title={player.name}
             score={player.score}
             onUpdate={score => onUpdateScore(index, score)}
           />
         ))}
-        <Button handleClick={onResetScore}>Reset Scores</Button>
-        <Button handleClick={onBack}>Back</Button>
+        <Button onClick={onResetScore}>Reset Scores</Button>
+        <Button onClick={onBack}>Back</Button>
       </React.Fragment>
     )
   }
