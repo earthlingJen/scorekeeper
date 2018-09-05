@@ -1,10 +1,8 @@
 import React, { Component } from 'react'
-import PointButtonBar from './PointButtonBar'
 import styled from 'styled-components'
 
 const PlayerName = styled.span`
   font-size: 32px;
-  margin-right: 70px;
 `
 
 const Score = styled.span`
@@ -12,15 +10,20 @@ const Score = styled.span`
   font-size: 32px;
 `
 
-export default class EditCard extends Component {
+const HeaderBackground = styled.div`
+  background: lightgray;
+  display: flex;
+  justify-content: space-between;
+`
+
+export default class PlayerHeader extends Component {
   render() {
-    const { title, score, onUpdate } = this.props
+    const { title, score } = this.props
     return (
-      <div>
+      <HeaderBackground>
         <PlayerName>{title}</PlayerName>
         <Score>{score}</Score>
-        <PointButtonBar onClick={onUpdate} />
-      </div>
+      </HeaderBackground>
     )
   }
 }
