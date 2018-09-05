@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 
-const StyledScoreUpdater = styled.div`
+const StyledPointButtonBar = styled.div`
   margin: auto;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -25,18 +25,18 @@ const Btn = styled.button`
   }
 `
 
-export default class ScoreUpdater extends Component {
+export default class PointButtonBar extends Component {
   render() {
     const { handleClick } = this.props
     return (
-      <StyledScoreUpdater>
+      <StyledPointButtonBar>
         <Btn onClick={() => handleClick(-10)}>-10</Btn>
         <Btn onClick={() => handleClick(-5)}>-5</Btn>
         <Btn onClick={() => handleClick(-1)}>-1</Btn>
         <Btn onClick={() => handleClick(+1)}>+1</Btn>
         <Btn onClick={() => handleClick(+5)}>+5</Btn>
         <Btn onClick={() => handleClick(+10)}>+10</Btn>
-      </StyledScoreUpdater>
+      </StyledPointButtonBar>
     )
   }
 }

@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Button from './Button'
-import ScoreBoard from './ScoreBoard'
-import PlayerSetup from './PlayerSetup'
+import PlayerCard from './PlayerCard'
+import PlayerInput from './PlayerInput'
 import { load, save } from '../services'
 
 const StyledApp = styled.div`
@@ -19,40 +19,40 @@ const SimpleButton = styled.button`
 class App extends Component {
   state = {
     showStartScreen: true,
-    users: load('users') || [],
+    players: load('players') || [],
   }
 
   updateScore = (index, value) => {
-    const users = this.state.users
-    const user = users[index]
+    const players = this.state.players
+    const player = players[index]
 
     this.setState(
       {
-        users: [
-          ...users.slice(0, index),
-          { ...user, score: user.score + value },
-          ...users.slice(index + 1),
+        players: [
+          ...players.slice(0, index),
+          { ...player, score: player.score + value },
+          ...players.slice(index + 1),
         ],
       },
-      this.saveUsers
+      this.savePlayers
     )
   }
 
-  saveUsers() {
-    save('users', this.state.users)
+  savePlayers() {
+    save('players', this.state.players)
   }
 
   resetScore = () => {
     this.setState(
       {
-        users: this.state.users.map(user => ({ ...user, score: 0 })),
+        players: this.state.players.map(player => ({ ...player, score: 0 })),
       },
-      this.saveUsers
+      this.savePlayers
     )
   }
 
   startGame = () => {
-    if (this.state.users.length > 0) {
+    if (this.state.players.length > 0) {
       this.setState({
         showStartScreen: false,
       })
@@ -60,60 +60,60 @@ class App extends Component {
   }
 
   addPlayer = name => {
-    const users = this.state.users
+    const players = this.state.players
 
     this.setState(
       {
-        users: [...users, { name: name, score: 0 }],
+        players: [...players, { name: name, score: 0 }],
       },
-      this.saveUsers
+      this.savePlayers
     )
   }
 
   renderWarningOrPlaybutton() {
-    return this.state.users.length ? (
+    return this.state.players.length ? (
       <Button handleClick={this.startGame}>Play!</Button>
     ) : (
-      <div>Please add one user and hit Enter-Button</div>
+      <div>Please add one player and hit Enter-Button</div>
     )
   }
 
-  deleteUser = index => {
-    const users = this.state.users
+  deletePlayer = index => {
+    const players = this.state.players
 
     this.setState(
       {
-        users: [...users.slice(0, index), ...users.slice(index + 1)],
+        players: [...players.slice(0, index), ...players.slice(index + 1)],
       },
-      this.saveUsers
+      this.savePlayers
     )
   }
 
-  deleteAllUsers = () => {
+  deleteAllPlayers = () => {
     this.setState(
       {
-        users: [],
+        players: [],
       },
-      this.saveUsers
+      this.savePlayers
     )
   }
 
   renderStartScreen() {
-    const { users } = this.state
+    const { players } = this.state
     return (
       <div>
         <h1>StartScreen</h1>
-        {users.map((user, index) => (
+        {players.map((player, index) => (
           <div key={index}>
-            {user.name}
-            <SimpleButton onClick={() => this.deleteUser(index)}>
+            {player.name}
+            <SimpleButton onClick={() => this.deletePlayer(index)}>
               &times;
             </SimpleButton>
           </div>
         ))}
-        <PlayerSetup onSubmit={this.addPlayer} />
+        <PlayerInput onSubmit={this.addPlayer} />
         {this.renderWarningOrPlaybutton()}
-        <SimpleButton onClick={this.deleteAllUsers}>
+        <SimpleButton onClick={this.deleteAllPlayers}>
           Delete all Players
         </SimpleButton>
       </div>
@@ -130,11 +130,11 @@ class App extends Component {
     return (
       <React.Fragment>
         <h2>Score keeper</h2>
-        {this.state.users.map((user, index) => (
-          <ScoreBoard
+        {this.state.players.map((player, index) => (
+          <PlayerCard
             key={index}
-            title={user.name}
-            score={user.score}
+            title={player.name}
+            score={player.score}
             onUpdate={score => this.updateScore(index, score)}
           />
         ))}
