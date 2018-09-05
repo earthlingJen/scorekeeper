@@ -1,19 +1,14 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Button from './Button'
-import PlayerCard from './PlayerCard'
-import PlayerInput from './PlayerInput'
 import { load, save } from '../services'
+import StartScreen from './StartScreen'
+import GameScreen from './GameScreen'
 
 const StyledApp = styled.div`
   text-align: center;
   border: 1px solid;
   height: 90vh;
   width: 300px;
-`
-
-const SimpleButton = styled.button`
-  border: 1px solid blue;
 `
 
 class App extends Component {
@@ -70,14 +65,6 @@ class App extends Component {
     )
   }
 
-  renderWarningOrPlaybutton() {
-    return this.state.players.length ? (
-      <Button handleClick={this.startGame}>Play!</Button>
-    ) : (
-      <div>Please add one player and hit Enter-Button</div>
-    )
-  }
-
   deletePlayer = index => {
     const players = this.state.players
 
@@ -99,24 +86,14 @@ class App extends Component {
   }
 
   renderStartScreen() {
-    const { players } = this.state
     return (
-      <div>
-        <h1>StartScreen</h1>
-        {players.map((player, index) => (
-          <div key={index}>
-            {player.name}
-            <SimpleButton onClick={() => this.deletePlayer(index)}>
-              &times;
-            </SimpleButton>
-          </div>
-        ))}
-        <PlayerInput onSubmit={this.addPlayer} />
-        {this.renderWarningOrPlaybutton()}
-        <SimpleButton onClick={this.deleteAllPlayers}>
-          Delete all Players
-        </SimpleButton>
-      </div>
+      <StartScreen
+        players={this.state.players}
+        onAddPlayer={this.addPlayer}
+        onDeletePlayer={this.deletePlayer}
+        onDeleteAllPlayers={this.deleteAllPlayers}
+        onStartGame={this.startGame}
+      />
     )
   }
 
@@ -128,19 +105,12 @@ class App extends Component {
 
   renderActiveGame() {
     return (
-      <React.Fragment>
-        <h2>Score keeper</h2>
-        {this.state.players.map((player, index) => (
-          <PlayerCard
-            key={index}
-            title={player.name}
-            score={player.score}
-            onUpdate={score => this.updateScore(index, score)}
-          />
-        ))}
-        <Button handleClick={this.resetScore}>Reset Scores</Button>
-        <Button handleClick={this.backToStartScreen}>Back</Button>
-      </React.Fragment>
+      <GameScreen
+        players={this.state.players}
+        onBack={this.backToStartScreen}
+        onUpdateScore={this.updateScore}
+        onResetScore={this.resetScore}
+      />
     )
   }
 

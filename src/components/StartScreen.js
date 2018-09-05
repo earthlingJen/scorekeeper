@@ -9,19 +9,26 @@ const SimpleButton = styled.button`
 
 export default class StartScreen extends Component {
   render() {
-    const { players } = this.state
+    const {
+      players,
+      onDeletePlayer,
+      onAddPlayer,
+      onDeleteAllPlayers,
+    } = this.props
     return (
       <div>
         <h1>StartScreen</h1>
         {players.map((player, index) => (
           <div key={index}>
             {player.name}
-            <SimpleButton onClick={onDeletePlayer(index)}>&times;</SimpleButton>
+            <SimpleButton onClick={() => onDeletePlayer(index)}>
+              &times;
+            </SimpleButton>
           </div>
         ))}
-        <PlayerInput onSubmit={this.addPlayer} />
+        <PlayerInput onSubmit={onAddPlayer} />
         {this.renderWarningOrPlaybutton()}
-        <SimpleButton onClick={this.deleteAllPlayers}>
+        <SimpleButton onClick={onDeleteAllPlayers}>
           Delete all Players
         </SimpleButton>
       </div>
@@ -29,8 +36,9 @@ export default class StartScreen extends Component {
   }
 
   renderWarningOrPlaybutton() {
-    return this.state.players.length ? (
-      <Button handleClick={this.startGame}>Play!</Button>
+    const { players, onStartGame } = this.props
+    return players.length ? (
+      <Button handleClick={onStartGame}>Play!</Button>
     ) : (
       <div>Please add one player and hit Enter-Button</div>
     )
