@@ -103,7 +103,7 @@ class App extends Component {
     })
   }
 
-  renderActiveGame() {
+  renderGameScreen() {
     return (
       <GameScreen
         players={this.state.players}
@@ -118,7 +118,7 @@ class App extends Component {
     const { showStartScreen } = this.state
     return (
       <StyledApp>
-        {showStartScreen ? this.renderStartScreen() : this.renderActiveGame()}
+        {showStartScreen ? this.renderStartScreen() : this.renderGameScreen()}
       </StyledApp>
     )
   }
