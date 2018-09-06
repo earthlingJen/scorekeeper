@@ -12,7 +12,8 @@ export default class SummaryCard extends Component {
   render() {
     const { title, scores } = this.props
     const total = scores.reduce(
-      (previous, current) => Number(previous) + Number(current)
+      (previous, current) => Number(previous) + Number(current),
+      0
     )
     return (
       <BackgroundSummaryCard>

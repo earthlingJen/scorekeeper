@@ -7,12 +7,12 @@ export default class GameScreen extends Component {
     const { players, onUpdateScore, onSaveRound, onResetScores } = this.props
     return (
       <React.Fragment>
-        <h2>Score keeper</h2>
+        <h1>Count Score</h1>
         {players.map((player, index) => (
           <EditCard
             key={index}
             title={player.name}
-            score={player.score}
+            score={player.roundScore}
             onUpdate={score => onUpdateScore(index, score)}
           />
         ))}

@@ -26,7 +26,7 @@ class App extends Component {
       {
         players: [
           ...players.slice(0, index),
-          { ...player, score: player.score + value },
+          { ...player, roundScore: player.roundScore + value },
           ...players.slice(index + 1),
         ],
       },
@@ -60,7 +60,7 @@ class App extends Component {
 
     this.setState(
       {
-        players: [...players, { name: name, score: 0 }],
+        players: [...players, { name: name, scores: [], roundScore: 0 }],
       },
       this.savePlayers
     )
@@ -104,8 +104,14 @@ class App extends Component {
     })
   }
 
-  backToSummaryScreen = () => {
+  saveRound = () => {
+    const players = this.state.players
     this.setState({
+      players: players.map(player => ({
+        ...player,
+        scores: [...player.scores, player.roundScore],
+        roundScore: 0,
+      })),
       showScreen: 'summary',
     })
   }
@@ -120,7 +126,7 @@ class App extends Component {
     return (
       <GameScreen
         players={this.state.players}
-        onSaveRound={this.backToSummaryScreen}
+        onSaveRound={this.saveRound}
         onUpdateScore={this.updateScore}
         onResetScores={this.resetScore}
       />
@@ -130,13 +136,7 @@ class App extends Component {
   renderSummaryScreen() {
     return (
       <SummaryScreen
-        players={[
-          { name: 'John', scores: [1, 2, 3] },
-          {
-            name: 'Jane',
-            scores: [10, 20, 32, 10, 20, 32, 10, 20, 32, 10, 20, 32],
-          },
-        ]}
+        players={this.state.players}
         onAddRound={() => this.addRound()}
         onBackToStart={this.backToStartScreen}
       />

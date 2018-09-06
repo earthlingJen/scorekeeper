@@ -17,7 +17,7 @@ export default class StartScreen extends Component {
     } = this.props
     return (
       <div>
-        <h1>StartScreen</h1>
+        <h1>Score keeper</h1>
         {players.map((player, index) => (
           <div key={index}>
             {player.name}
