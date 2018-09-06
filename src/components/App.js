@@ -109,7 +109,7 @@ class App extends Component {
         players={this.state.players}
         onBack={this.backToStartScreen}
         onUpdateScore={this.updateScore}
-        onResetScore={this.resetScore}
+        onResetScores={this.resetScore}
       />
     )
   }

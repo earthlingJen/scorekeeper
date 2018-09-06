@@ -26,16 +26,17 @@ const Round = styled.span`
 `
 
 export default class RoundsBar extends Component {
+  // state = {
+  //   round: [11, 20, 12],
+  // }
+
   render() {
     const { round } = this.props
     return (
       <StyledRoundsBar>
-        <Round>{round}</Round>
-        <Round>{round}</Round>
-        <Round>{round}</Round>
-        <Round>{round}</Round>
-        <Round>{round}</Round>
-        <Round>{round}</Round>
+        {round.map((round, index) => (
+          <Round key={index} round={round.score} />
+        ))}
       </StyledRoundsBar>
     )
   }

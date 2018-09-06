@@ -11,6 +11,8 @@ import GameScreen from '../components/GameScreen'
 import StartScreen from '../components/StartScreen'
 import PlayerHeader from '../components/PlayerHeader'
 import RoundsBar from '../components/RoundsBar'
+import SummaryCard from '../components/SummaryCard'
+import SummaryScreen from '../components/SummaryScreen'
 
 storiesOf('Button', module)
   .addDecorator(withKnobs)
@@ -81,7 +83,7 @@ storiesOf('GameScreen', module)
       players={[{ name: 'John', score: 0 }]}
       onUpdateScore={action('onUpdateScore')}
       onBack={action('onBack')}
-      onResetScore={action('onResetScore')}
+      onResetScores={action('onResetScores')}
     />
   ))
   .add('multiple users', () => (
@@ -89,19 +91,52 @@ storiesOf('GameScreen', module)
       players={[{ name: 'John', score: 0 }, { name: 'Jane', score: 10 }]}
       onUpdateScore={action('onUpdateScore')}
       onBack={action('onBack')}
-      onResetScore={action('onResetScore')}
+      onResetScores={action('onResetScores')}
     />
   ))
 
 storiesOf('PlayerHeader', module)
   .addDecorator(withKnobs)
-  .add('player header', () => (
+  .add('short name', () => (
     <PlayerHeader
-      title={text('Player', 'Player Name')}
+      title={text('Player', 'Player Name short')}
       score={number('score', 20)}
+    />
+  ))
+  .add('long name big score', () => (
+    <PlayerHeader
+      title={text('Player', 'Player Name loooooooooooooooooooooooooooooong')}
+      score={number('score', 12345678912345678912)}
     />
   ))
 
 storiesOf('RoundsBar', module)
   .addDecorator(withKnobs)
-  .add('RoundsBar', () => <RoundsBar round={number('score', 20)} />)
+  .add('two digits', () => <RoundsBar round={[{ score: 0 }]} />)
+
+  .add('twelve digits', () => (
+    <RoundsBar round={number('score', 123456789012)} />
+  ))
+
+storiesOf('SummaryCard', module)
+  .addDecorator(withKnobs)
+  .add('one player', () => (
+    <SummaryCard title="Player 1" score={20} round={number('score', 20)} />
+  ))
+
+storiesOf('SummaryScreen', module)
+  .addDecorator(withKnobs)
+  .add('one player', () => (
+    <SummaryScreen
+      players={[{ name: 'John', score: 0 }]}
+      round={number('score', 20)}
+      onAddRound={action('addRound')}
+    />
+  ))
+  .add('multiple players', () => (
+    <SummaryScreen
+      players={[{ name: 'John', score: 0 }, { name: 'Jane', score: 10 }]}
+      round={number('score', 20)}
+      onAddRound={action('addRound')}
+    />
+  ))

@@ -4,7 +4,7 @@ import EditCard from './EditCard'
 
 export default class GameScreen extends Component {
   render() {
-    const { players, onUpdateScore, onBack, onResetScore } = this.props
+    const { players, onUpdateScore, onBack, onResetScores } = this.props
     return (
       <React.Fragment>
         <h2>Score keeper</h2>
@@ -16,7 +16,7 @@ export default class GameScreen extends Component {
             onUpdate={score => onUpdateScore(index, score)}
           />
         ))}
-        <Button onClick={onResetScore}>Reset Scores</Button>
+        <Button onClick={onResetScores}>Reset Scores</Button>
         <Button onClick={onBack}>Back</Button>
       </React.Fragment>
     )
