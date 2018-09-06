@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { load, save } from '../services'
 import StartScreen from './StartScreen'
@@ -39,12 +40,18 @@ class App extends Component {
   }
 
   resetScore = () => {
-    this.setState(
-      {
-        players: this.state.players.map(player => ({ ...player, score: 0 })),
-      },
-      this.savePlayers
-    )
+    const players = this.state.players
+    this.setState({
+      players: players.map(
+        player => ({
+          ...player,
+          scores: [...player.scores, player.roundScore],
+          roundScore: 0,
+        }),
+
+        this.savePlayers
+      ),
+    })
   }
 
   startGame = () => {
@@ -86,7 +93,7 @@ class App extends Component {
     )
   }
 
-  renderStartScreen() {
+  renderStartScreen = () => {
     return (
       <StartScreen
         players={this.state.players}
@@ -122,7 +129,7 @@ class App extends Component {
     })
   }
 
-  renderGameScreen() {
+  renderGameScreen = () => {
     return (
       <GameScreen
         players={this.state.players}
@@ -133,7 +140,7 @@ class App extends Component {
     )
   }
 
-  renderSummaryScreen() {
+  renderSummaryScreen = () => {
     return (
       <SummaryScreen
         players={this.state.players}
@@ -157,7 +164,17 @@ class App extends Component {
   }
 
   render() {
-    return <StyledApp>{this.renderScreen()}</StyledApp>
+    return (
+      <Router>
+        <StyledApp>
+          {this.renderScreen()}
+
+          {/* <Route exact path="/" render={this.renderStartScreen} />
+          <Route exact path="/Summary" render={this.renderSummaryScreen} />
+          <Route exact path="/Game" render={this.renderGameScreen} /> */}
+        </StyledApp>
+      </Router>
+    )
   }
 }
 
