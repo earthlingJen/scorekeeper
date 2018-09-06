@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { load, save } from '../services'
 import StartScreen from './StartScreen'
 import GameScreen from './GameScreen'
+import SummaryScreen from './SummaryScreen'
 
 const StyledApp = styled.div`
   text-align: center;
@@ -13,7 +14,7 @@ const StyledApp = styled.div`
 
 class App extends Component {
   state = {
-    showStartScreen: true,
+    showScreen: 'start', //or "game" or "summary"
     players: load('players') || [],
   }
 
@@ -49,7 +50,7 @@ class App extends Component {
   startGame = () => {
     if (this.state.players.length > 0) {
       this.setState({
-        showStartScreen: false,
+        showScreen: 'summary',
       })
     }
   }
@@ -99,7 +100,7 @@ class App extends Component {
 
   backToStartScreen = () => {
     this.setState({
-      showStartScreen: true,
+      showScreen: 'start',
     })
   }
 
@@ -114,13 +115,34 @@ class App extends Component {
     )
   }
 
-  render() {
-    const { showStartScreen } = this.state
+  renderSummaryScreen() {
     return (
-      <StyledApp>
-        {showStartScreen ? this.renderStartScreen() : this.renderGameScreen()}
-      </StyledApp>
+      <SummaryScreen
+        players={[
+          { name: 'John', scores: [1, 2, 3] },
+          {
+            name: 'Jane',
+            scores: [10, 20, 32, 10, 20, 32, 10, 20, 32, 10, 20, 32],
+          },
+        ]}
+        onAddRound={() => console.log('add round')}
+      />
     )
+  }
+
+  renderScreen() {
+    const { showScreen } = this.state
+    if (showScreen === 'start') {
+      return this.renderStartScreen()
+    } else if (showScreen === 'summary') {
+      return this.renderSummaryScreen()
+    } else {
+      this.renderGameScreen()
+    }
+  }
+
+  render() {
+    return <StyledApp>{this.renderScreen()}</StyledApp>
   }
 }
 
