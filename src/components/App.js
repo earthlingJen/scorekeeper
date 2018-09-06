@@ -15,7 +15,7 @@ const StyledApp = styled.div`
 
 class App extends Component {
   state = {
-    showScreen: 'start', //or "game" or "summary"
+    //showScreen: 'start', //or "game" or "summary"
     players: load('players') || [],
   }
 
@@ -54,13 +54,13 @@ class App extends Component {
     })
   }
 
-  startGame = () => {
-    if (this.state.players.length > 0) {
-      this.setState({
-        showScreen: 'summary',
-      })
-    }
-  }
+  // startGame = () => {
+  //   if (this.state.players.length > 0) {
+  //     this.setState({
+  //       showScreen: 'summary',
+  //     })
+  //   }
+  // }
 
   addPlayer = name => {
     const players = this.state.players
@@ -107,7 +107,7 @@ class App extends Component {
 
   backToStartScreen = () => {
     this.setState({
-      showScreen: 'start',
+      // showScreen: 'start',
     })
   }
 
@@ -119,7 +119,7 @@ class App extends Component {
         scores: [...player.scores, player.roundScore],
         roundScore: 0,
       })),
-      showScreen: 'summary',
+      //showScreen: 'summary',
     })
   }
 
@@ -150,18 +150,18 @@ class App extends Component {
     )
   }
 
-  renderScreen() {
-    const { showScreen } = this.state
-    if (showScreen === 'start') {
-      return this.renderStartScreen()
-    } else if (showScreen === 'summary') {
-      return this.renderSummaryScreen()
-    } else if (showScreen === 'game') {
-      return this.renderGameScreen()
-    } else {
-      console.log('Error')
-    }
-  }
+  // renderScreen() {
+  //   const { showScreen } = this.state
+  //   if (showScreen === 'start') {
+  //     return this.renderStartScreen()
+  //   } else if (showScreen === 'summary') {
+  //     return this.renderSummaryScreen()
+  //   } else if (showScreen === 'game') {
+  //     return this.renderGameScreen()
+  //   } else {
+  //     console.log('Error')
+  //   }
+  // }
 
   render() {
     return (
@@ -170,8 +170,8 @@ class App extends Component {
           {/* {this.renderScreen()} */}
 
           <Route exact path="/" render={this.renderStartScreen} />
-          <Route exact path="/Summary" render={this.renderSummaryScreen} />
-          <Route exact path="/Game" render={this.renderGameScreen} />
+          <Route exact path="/summary" render={this.renderSummaryScreen} />
+          <Route exact path="/game" render={this.renderGameScreen} />
         </StyledApp>
       </Router>
     )
