@@ -98,9 +98,15 @@ class App extends Component {
     )
   }
 
-  backToStartScreen = () => {
+  backToSummaryScreen = () => {
     this.setState({
-      showScreen: 'start',
+      showScreen: 'summary',
+    })
+  }
+
+  addRound() {
+    this.setState({
+      showScreen: 'game',
     })
   }
 
@@ -108,7 +114,7 @@ class App extends Component {
     return (
       <GameScreen
         players={this.state.players}
-        onBack={this.backToStartScreen}
+        onSaveRound={this.backToSummaryScreen}
         onUpdateScore={this.updateScore}
         onResetScores={this.resetScore}
       />
@@ -125,7 +131,7 @@ class App extends Component {
             scores: [10, 20, 32, 10, 20, 32, 10, 20, 32, 10, 20, 32],
           },
         ]}
-        onAddRound={() => console.log('add round')}
+        onAddRound={() => this.addRound()}
       />
     )
   }
@@ -136,8 +142,10 @@ class App extends Component {
       return this.renderStartScreen()
     } else if (showScreen === 'summary') {
       return this.renderSummaryScreen()
+    } else if (showScreen === 'game') {
+      return this.renderGameScreen()
     } else {
-      this.renderGameScreen()
+      console.log('Error')
     }
   }
 

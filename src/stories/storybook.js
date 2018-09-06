@@ -82,7 +82,7 @@ storiesOf('GameScreen', module)
     <GameScreen
       players={[{ name: 'John', score: 0 }]}
       onUpdateScore={action('onUpdateScore')}
-      onBack={action('onBack')}
+      onSaveRound={action('onSaveRound')}
       onResetScores={action('onResetScores')}
     />
   ))
@@ -90,7 +90,7 @@ storiesOf('GameScreen', module)
     <GameScreen
       players={[{ name: 'John', score: 0 }, { name: 'Jane', score: 10 }]}
       onUpdateScore={action('onUpdateScore')}
-      onBack={action('onBack')}
+      onSaveRound={action('onSaveRound')}
       onResetScores={action('onResetScores')}
     />
   ))
