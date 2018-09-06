@@ -2,7 +2,7 @@ import React from 'react'
 
 import { storiesOf } from '@storybook/react'
 import { action } from '@storybook/addon-actions'
-import { withKnobs, text, number, button } from '@storybook/addon-knobs/react'
+import { withKnobs, text, number, array } from '@storybook/addon-knobs/react'
 
 import Button from '../components/Button'
 import EditCard from '../components/EditCard'
@@ -112,31 +112,31 @@ storiesOf('PlayerHeader', module)
 
 storiesOf('RoundsBar', module)
   .addDecorator(withKnobs)
-  .add('two digits', () => <RoundsBar round={[{ score: 0 }]} />)
+  .add('two digits', () => <RoundsBar scores={[1, 2]} />)
 
-  .add('twelve digits', () => (
-    <RoundsBar round={number('score', 123456789012)} />
-  ))
+  .add('three digits', () => <RoundsBar scores={[1, 2, 3]} />)
 
 storiesOf('SummaryCard', module)
   .addDecorator(withKnobs)
-  .add('one player', () => (
-    <SummaryCard title="Player 1" score={20} round={number('score', 20)} />
-  ))
+  .add('one player', () => <SummaryCard title="Player 1" scores={[1, 2, 30]} />)
 
 storiesOf('SummaryScreen', module)
   .addDecorator(withKnobs)
   .add('one player', () => (
     <SummaryScreen
-      players={[{ name: 'John', score: 0 }]}
-      round={number('score', 20)}
+      players={[{ name: 'John', scores: [10, 20, -4] }]}
       onAddRound={action('addRound')}
     />
   ))
   .add('multiple players', () => (
     <SummaryScreen
-      players={[{ name: 'John', score: 0 }, { name: 'Jane', score: 10 }]}
-      round={number('score', 20)}
+      players={[
+        { name: 'John', scores: array('Scores', [1, 2, 3]) },
+        {
+          name: 'Jane',
+          scores: [10, 20, 32, 10, 20, 32, 10, 20, 32, 10, 20, 32],
+        },
+      ]}
       onAddRound={action('addRound')}
     />
   ))

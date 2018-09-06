@@ -6,7 +6,6 @@ const StyledRoundsBar = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
-  width: 80%;
   justify-content: center;
   align-items: center;
   height: 20px;
@@ -26,16 +25,18 @@ const Round = styled.span`
 `
 
 export default class RoundsBar extends Component {
-  // state = {
-  //   round: [11, 20, 12],
-  // }
+  scrollerRef = React.createRef()
 
+  componentDidUpdate() {
+    const scroller = this.scrollerRef.current
+    scroller.scrollLeft = scroller.scrollWidth
+  }
   render() {
-    const { round } = this.props
+    const { scores } = this.props
     return (
-      <StyledRoundsBar>
-        {round.map((round, index) => (
-          <Round key={index} round={round.score} />
+      <StyledRoundsBar innerRef={this.scrollerRef}>
+        {scores.map((score, index) => (
+          <Round key={index}> {score} </Round>
         ))}
       </StyledRoundsBar>
     )
