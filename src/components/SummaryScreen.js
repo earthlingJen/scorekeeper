@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import SummaryCard from './SummaryCard'
 import Button from './Button'
+import { BrowserRouter as Router, Routes, Link } from 'react-router-dom'
 
 export default class SummaryScreen extends Component {
   render() {
@@ -11,8 +12,13 @@ export default class SummaryScreen extends Component {
         {players.map((player, index) => (
           <SummaryCard key={index} title={player.name} scores={player.scores} />
         ))}
-        <Button onClick={onAddRound}>Add round</Button>
-        <Button onClick={onBackToStart}>Back to start</Button>
+        <Link to="/game" style={{ textDecoration: 'none' }}>
+          <Button onClick={onAddRound}>Add round</Button>
+        </Link>
+
+        <Link to="/" style={{ textDecoration: 'none' }}>
+          <Button onClick={onBackToStart}>Back to start</Button>
+        </Link>
       </div>
     )
   }

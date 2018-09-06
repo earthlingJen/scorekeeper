@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
 import styled from 'styled-components'
 import { load, save } from '../services'
 import StartScreen from './StartScreen'
 import GameScreen from './GameScreen'
 import SummaryScreen from './SummaryScreen'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const StyledApp = styled.div`
   text-align: center;
@@ -167,11 +167,11 @@ class App extends Component {
     return (
       <Router>
         <StyledApp>
-          {this.renderScreen()}
+          {/* {this.renderScreen()} */}
 
-          {/* <Route exact path="/" render={this.renderStartScreen} />
+          <Route exact path="/" render={this.renderStartScreen} />
           <Route exact path="/Summary" render={this.renderSummaryScreen} />
-          <Route exact path="/Game" render={this.renderGameScreen} /> */}
+          <Route exact path="/Game" render={this.renderGameScreen} />
         </StyledApp>
       </Router>
     )

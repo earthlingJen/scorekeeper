@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PlayerInput from './PlayerInput'
 import Button from './Button'
+import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
 
 const SimpleButton = styled.button`
   border: 1px solid blue;
@@ -38,7 +39,9 @@ export default class StartScreen extends Component {
   renderWarningOrPlaybutton() {
     const { players, onStartGame } = this.props
     return players.length ? (
-      <Button onClick={onStartGame}>Play!</Button>
+      <Link to="/summary" style={{ textDecoration: 'none' }}>
+        <Button onClick={onStartGame}>Play!</Button>
+      </Link>
     ) : (
       <h2>Please add one player and hit Enter-Button</h2>
     )
