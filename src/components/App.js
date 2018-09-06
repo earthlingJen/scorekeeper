@@ -98,6 +98,12 @@ class App extends Component {
     )
   }
 
+  backToStartScreen = () => {
+    this.setState({
+      showScreen: 'start',
+    })
+  }
+
   backToSummaryScreen = () => {
     this.setState({
       showScreen: 'summary',
@@ -132,6 +138,7 @@ class App extends Component {
           },
         ]}
         onAddRound={() => this.addRound()}
+        onBackToStart={this.backToStartScreen}
       />
     )
   }

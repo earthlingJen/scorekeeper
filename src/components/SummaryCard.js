@@ -6,7 +6,6 @@ import styled from 'styled-components'
 const BackgroundSummaryCard = styled.div`
   background: grey;
   padding: 20px;
-  width: 80vw;
 `
 
 export default class SummaryCard extends Component {

@@ -6,9 +6,11 @@ const StyledRoundsBar = styled.div`
   margin-top: 20px;
   margin-bottom: 20px;
   display: flex;
+  flex-wrap: nowrap;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
   justify-content: center;
   align-items: center;
-  height: 20px;
 `
 
 const Round = styled.span`
