@@ -40,7 +40,7 @@ export default class StartScreen extends Component {
     return players.length ? (
       <Button onClick={onStartGame}>Play!</Button>
     ) : (
-      <div>Please add one player and hit Enter-Button</div>
+      <h2>Please add one player and hit Enter-Button</h2>
     )
   }
 }

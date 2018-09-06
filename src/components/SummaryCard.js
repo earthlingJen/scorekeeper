@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const BackgroundSummaryCard = styled.div`
   background: grey;
-  padding: 20px;
+  padding: 8px;
 `
 
 export default class SummaryCard extends Component {

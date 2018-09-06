@@ -3,8 +3,8 @@ import styled from 'styled-components'
 
 const StyledRoundsBar = styled.div`
   margin: auto;
-  margin-top: 20px;
-  margin-bottom: 20px;
+  margin-top: 10px;
+  margin-bottom: 10px;
   display: flex;
   flex-wrap: nowrap;
   -webkit-overflow-scrolling: touch;

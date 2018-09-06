@@ -9,12 +9,12 @@ const StyledPointButtonBar = styled.div`
   width: 80%;
   justify-content: center;
   align-items: center;
-  height: 20px;
+  height: 10px;
 `
 
 const Btn = styled.button`
   font-size: 22px;
-  padding: 12px 7px;
+  padding: 7px 7px;
   margin: 1px;
   border: 1px solid;
   border-radius: 2px;
