@@ -4,7 +4,7 @@ import { load, save } from '../services'
 import StartScreen from './StartScreen'
 import GameScreen from './GameScreen'
 import SummaryScreen from './SummaryScreen'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 const StyledApp = styled.div`
   text-align: center;

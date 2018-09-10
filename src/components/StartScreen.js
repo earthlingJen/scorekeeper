@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import PlayerInput from './PlayerInput'
 import Button from './Button'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 const SimpleButton = styled.button`
   border: 1px solid blue;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Button from './Button'
 import EditCard from './EditCard'
-import { BrowserRouter as Router, Route, Link } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
 export default class GameScreen extends Component {
   render() {
