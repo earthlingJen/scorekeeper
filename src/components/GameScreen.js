@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 export default class GameScreen extends Component {
   render() {
-    const { players, onUpdateScore, onSaveRound, onResetScores } = this.props
+    const { players, onUpdateScore, onSaveRound, resetRoundScores } = this.props
     return (
       <React.Fragment>
         <h1>Count Score</h1>
@@ -20,7 +20,7 @@ export default class GameScreen extends Component {
         <Link to="/summary" style={{ textDecoration: 'none' }}>
           <Button onClick={onSaveRound}>Save Round</Button>
         </Link>
-        <Button onClick={onResetScores}>Reset Scores</Button>
+        <Button onClick={resetRoundScores}>Reset round scores</Button>
       </React.Fragment>
     )
   }

@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 export default class SummaryScreen extends Component {
   render() {
-    const { players, onAddRound, onBackToStart } = this.props
+    const { players, onBackToStart } = this.props
     return (
       <div>
         <h1>Summary Screen</h1>
@@ -13,7 +13,7 @@ export default class SummaryScreen extends Component {
           <SummaryCard key={index} title={player.name} scores={player.scores} />
         ))}
         <Link to="/game" style={{ textDecoration: 'none' }}>
-          <Button onClick={onAddRound}>Add round</Button>
+          <Button>Add round</Button>
         </Link>
 
         <Link to="/" style={{ textDecoration: 'none' }}>

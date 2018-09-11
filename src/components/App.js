@@ -1,14 +1,22 @@
 import React, { Component } from 'react'
-import { createStore } from 'redux'
-import reducer from '../reducer'
-import ACTIONS, { addPlayer, deletePlayer } from '../actions'
-import styled from 'styled-components'
-import StartScreen from './StartScreen'
-import GameScreen from './GameScreen'
-import SummaryScreen from './SummaryScreen'
 import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { applyMiddleware, createStore } from 'redux'
+import styled from 'styled-components'
+import {
+  addPlayer,
+  deleteAllPlayers,
+  deletePlayer,
+  resetRoundScores,
+  saveRound,
+  updateRoundscore,
+} from '../actions'
+import { saveToLocalStorage } from '../middlewares'
+import reducer from '../reducer'
+import GameScreen from './GameScreen'
+import StartScreen from './StartScreen'
+import SummaryScreen from './SummaryScreen'
 
-const store = createStore(reducer)
+const store = createStore(reducer, applyMiddleware(saveToLocalStorage))
 
 const StyledApp = styled.div`
   text-align: center;
@@ -30,8 +38,7 @@ class App extends Component {
         players={store.getState().players}
         onAddPlayer={name => store.dispatch(addPlayer({ name }))}
         onDeletePlayer={index => store.dispatch(deletePlayer({ index }))}
-        onDeleteAllPlayers={this.deleteAllPlayers}
-        onStartGame={this.startGame}
+        onDeleteAllPlayers={() => store.dispatch(deleteAllPlayers())}
       />
     )
   }
@@ -40,21 +47,17 @@ class App extends Component {
     return (
       <GameScreen
         players={store.getState().players}
-        onSaveRound={this.saveRound}
-        onUpdateScore={this.updateScore}
-        onResetScores={this.resetScore}
+        onSaveRound={() => store.dispatch(saveRound())}
+        onUpdateScore={(index, value) =>
+          store.dispatch(updateRoundscore({ index, value }))
+        }
+        resetRoundScores={() => store.dispatch(resetRoundScores())}
       />
     )
   }
 
   renderSummaryScreen = () => {
-    return (
-      <SummaryScreen
-        players={store.getState().players}
-        onAddRound={() => this.addRound()}
-        onBackToStart={this.backToStartScreen}
-      />
-    )
+    return <SummaryScreen players={store.getState().players} />
   }
 
   render() {

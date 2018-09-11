@@ -24,8 +24,18 @@ export default function reducer(state = initialState, action = {}) {
           },
         ],
       }
-    case ACTIONS.RESET_SCORE:
+
+    case ACTIONS.RESET_ROUND_SCORES:
       return {
+        ...state,
+        players: state.players.map(player => ({
+          ...player,
+          roundScore: 0,
+        })),
+      }
+    case ACTIONS.RESET_SCORES:
+      return {
+        ...state,
         players: state.players.map(player => ({
           ...player,
           scores: [],
@@ -42,7 +52,6 @@ export default function reducer(state = initialState, action = {}) {
     case ACTIONS.SAVE_ROUND:
       return {
         ...state,
-
         players: state.players.map(player => {
           return {
             ...player,
