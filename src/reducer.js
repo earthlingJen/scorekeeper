@@ -1,11 +1,18 @@
-export default function reducer(state, action = {}) {
+import ACTIONS from './actions'
+import { load } from './services'
+
+const initialState = {
+  players: load('players') || [],
+}
+
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case 'DELETE_ALL_PLAYERS':
+    case ACTIONS.DELETE_ALL_PLAYERS:
       return {
         ...state,
         players: [],
       }
-    case 'ADD_PLAYER':
+    case ACTIONS.ADD_PLAYER:
       return {
         ...state,
         players: [
@@ -17,14 +24,14 @@ export default function reducer(state, action = {}) {
           },
         ],
       }
-    case 'RESET_SCORE':
+    case ACTIONS.RESET_SCORE:
       return {
         players: state.players.map(player => ({
           ...player,
           scores: [],
         })),
       }
-    case 'DELETE_PLAYER':
+    case ACTIONS.DELETE_PLAYER:
       return {
         ...state,
         players: [
@@ -32,7 +39,7 @@ export default function reducer(state, action = {}) {
           ...state.players.slice(action.payload.index + 1),
         ],
       }
-    case 'SAVE_ROUND':
+    case ACTIONS.SAVE_ROUND:
       return {
         ...state,
 
@@ -44,7 +51,7 @@ export default function reducer(state, action = {}) {
           }
         }),
       }
-    case 'UPDATE_ROUNDSCORE':
+    case ACTIONS.UPDATE_ROUNDSCORE:
       return {
         ...state,
         players: [

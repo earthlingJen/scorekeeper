@@ -1,4 +1,5 @@
 import reducer from './reducer'
+import ACTIONS from './actions'
 
 describe('reducer', () => {
   it('always returns a state', () => {
@@ -19,7 +20,7 @@ describe('reducer', () => {
       }
 
       const action = {
-        type: 'ADD_PLAYER',
+        type: ACTIONS.ADD_PLAYER,
         payload: {
           name: 'John Doe',
         },
@@ -55,7 +56,7 @@ describe('reducer', () => {
         players: [{ name: 'Foo', scores: [20, 10, -5], roundScore: 20 }],
       }
 
-      const action = { type: 'RESET_SCORE' }
+      const action = { type: ACTIONS.RESET_SCORE }
       expect(reducer(state, action)).toEqual({
         players: [{ name: 'Foo', scores: [], roundScore: 20 }],
       })
@@ -72,7 +73,7 @@ describe('reducer', () => {
       }
 
       const action = {
-        type: 'DELETE_PLAYER',
+        type: ACTIONS.DELETE_PLAYER,
         payload: {
           index: 0,
         },
@@ -89,7 +90,7 @@ describe('reducer', () => {
       const state = {
         players: [{ name: 'Bar', scores: [20, 10, -5], roundScore: 20 }],
       }
-      const action = { type: 'SAVE_ROUND' }
+      const action = { type: ACTIONS.SAVE_ROUND }
       expect(reducer(state, action)).toEqual({
         players: [{ name: 'Bar', scores: [20, 10, -5, 20], roundScore: 0 }],
       })
@@ -102,7 +103,7 @@ describe('reducer', () => {
         players: [{ name: 'Bar', scores: [20, 10, 0], roundScore: 20 }],
       }
       const action = {
-        type: 'UPDATE_ROUNDSCORE',
+        type: ACTIONS.UPDATE_ROUNDSCORE,
         payload: {
           index: 0,
           value: 30,
