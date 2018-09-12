@@ -2,8 +2,16 @@ import React, { Component } from 'react'
 import Button from './Button'
 import EditCard from './EditCard'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 export default class GameScreen extends Component {
+  static propTypes = {
+    players: PropTypes.arrayOf(PropTypes.object),
+    onUpdateScore: PropTypes.func,
+    onSaveRound: PropTypes.func,
+    resetRoundScores: PropTypes.func,
+  }
+
   render() {
     const { players, onUpdateScore, onSaveRound, resetRoundScores } = this.props
     return (

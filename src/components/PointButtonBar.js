@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const StyledPointButtonBar = styled.div`
   margin: auto;
@@ -26,6 +27,9 @@ const Btn = styled.button`
 `
 
 export default class PointButtonBar extends Component {
+  static propTypes = {
+    onClick: PropTypes.func,
+  }
   render() {
     const { onClick } = this.props
     return (

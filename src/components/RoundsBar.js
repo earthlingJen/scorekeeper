@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const StyledRoundsBar = styled.div`
   margin: auto;
@@ -27,6 +28,9 @@ const Round = styled.span`
 `
 
 export default class RoundsBar extends Component {
+  static propTypes = {
+    scores: PropTypes.arrayOf(PropTypes.number),
+  }
   scrollerRef = React.createRef()
 
   componentDidUpdate() {

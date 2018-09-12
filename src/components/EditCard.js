@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import PointButtonBar from './PointButtonBar'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 const PlayerName = styled.span`
   font-size: 32px;
@@ -13,6 +14,11 @@ const Score = styled.span`
 `
 
 export default class EditCard extends Component {
+  static propTypes = {
+    title: PropTypes.string,
+    score: PropTypes.number,
+    onUpdate: PropTypes.func,
+  }
   render() {
     const { title, score, onUpdate } = this.props
     return (

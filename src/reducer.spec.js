@@ -7,7 +7,7 @@ describe('reducer', () => {
       players: [{ foo: 'bar' }],
     }
 
-    const action = { type: "I don't really exist" }
+    const action = { type: 'I don\'t really exist' }
     expect(reducer(state, action)).toBe(state)
     expect(reducer(state, {})).toBe(state)
     expect(reducer(state)).toBe(state)
@@ -56,7 +56,7 @@ describe('reducer', () => {
         players: [{ name: 'Foo', scores: [20, 10, -5], roundScore: 20 }],
       }
 
-      const action = { type: ACTIONS.RESET_SCORE }
+      const action = { type: ACTIONS.RESET_SCORES }
       expect(reducer(state, action)).toEqual({
         players: [{ name: 'Foo', scores: [], roundScore: 20 }],
       })

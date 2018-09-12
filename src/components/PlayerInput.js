@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 export default class PlayerInput extends Component {
+  static propTypes = {
+    onSubmit: PropTypes.func,
+  }
+
   state = {
     inputValue: '',
   }

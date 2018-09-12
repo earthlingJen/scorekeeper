@@ -3,12 +3,20 @@ import styled from 'styled-components'
 import PlayerInput from './PlayerInput'
 import Button from './Button'
 import { Link } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 const SimpleButton = styled.button`
   border: 1px solid blue;
 `
 
 export default class StartScreen extends Component {
+  static propTypes = {
+    players: PropTypes.arrayOf(PropTypes.object),
+    onDeleteAllPlayers: PropTypes.func,
+    onDeletePlayer: PropTypes.func,
+    onAddPlayer: PropTypes.func,
+    onStartGame: PropTypes.func,
+  }
   render() {
     const {
       players,
@@ -20,16 +28,22 @@ export default class StartScreen extends Component {
       <div>
         <h1>Score keeper</h1>
         {players.map((player, index) => (
-          <div key={index}>
+          <div data-test-id="StartScreen-player" key={index}>
             {player.name}
-            <SimpleButton onClick={() => onDeletePlayer(index)}>
-              &times;
+            <SimpleButton
+              data-test-id="StartScreen-delete-player"
+              onClick={() => onDeletePlayer(index)}
+            >
+              x{/*&times;*/}
             </SimpleButton>
           </div>
         ))}
         <PlayerInput onSubmit={onAddPlayer} />
         {this.renderWarningOrPlaybutton()}
-        <SimpleButton onClick={onDeleteAllPlayers}>
+        <SimpleButton
+          data-test-id="StartScreen-delete-all"
+          onClick={onDeleteAllPlayers}
+        >
           Delete all Players
         </SimpleButton>
       </div>
@@ -43,7 +57,9 @@ export default class StartScreen extends Component {
         <Button onClick={onStartGame}>Play!</Button>
       </Link>
     ) : (
-      <h2>Please add one player and hit Enter-Button</h2>
+      <h2 data-test-id="StartScreen-hint">
+        Please add one player and hit Enter-Button
+      </h2>
     )
   }
 }
