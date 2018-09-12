@@ -1,18 +1,7 @@
 import StartScreen from '../StartScreen'
-import { deletePlayer, deleteAllPlayers } from '../../actions'
 import { connect } from 'react-redux'
 
-const mapStateToProps = state => ({
-  players: state.players,
-})
+//const mapStateToProps = state => ({})
+//const mapDispatchToProps = dispatch => ({})
 
-const mapDispatchToProps = dispatch => ({
-  onDeletePlayer: index => dispatch(deletePlayer({ index })),
-
-  onDeleteAllPlayers: () => dispatch(deleteAllPlayers({})),
-})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(StartScreen)
+export default connect(null)(StartScreen)

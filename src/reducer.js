@@ -1,9 +1,10 @@
 import ACTIONS from './actions'
 import { load } from './services'
 
-const initialState = {
-  placeholder: 'Just one name, please',
-  players: load('players') || [],
+const initialState = load('app') || {
+  players: [],
+  previousGames: [],
+  gameTitle: '',
 }
 
 export default function reducer(state = initialState, action = {}) {
@@ -50,6 +51,12 @@ export default function reducer(state = initialState, action = {}) {
         ...state.players.slice(action.payload.index + 1),
       ],
     }
+  case ACTIONS.ADD_GAME:
+    return {
+      ...state,
+      gameTitle: action.payload.value,
+    }
+
   case ACTIONS.SAVE_ROUND:
     return {
       ...state,

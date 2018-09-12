@@ -5,9 +5,11 @@ import styled from 'styled-components'
 import { Provider } from 'react-redux'
 import { saveToLocalStorage } from '../middlewares'
 import reducer from '../reducer'
+
+import StartScreenContainer from './containers/StartScreenContainer'
 import SummaryScreenContainer from './containers/SummaryScreenContainer'
 import GameScreenContainer from './containers/GameScreenContainer'
-import StartScreenContainer from './containers/StartScreenContainer'
+import SetupScreenContainer from './containers/SetupScreenContainer'
 
 const store = createStore(reducer, applyMiddleware(saveToLocalStorage))
 
@@ -25,6 +27,7 @@ class App extends Component {
         <Provider store={store}>
           <StyledApp>
             <Route exact path="/" component={StartScreenContainer} />
+            <Route exact path="/setup" component={SetupScreenContainer} />
             <Route exact path="/summary" component={SummaryScreenContainer} />
             <Route exact path="/game" component={GameScreenContainer} />
           </StyledApp>

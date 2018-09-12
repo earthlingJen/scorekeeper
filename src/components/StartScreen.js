@@ -1,59 +1,20 @@
 import React, { Component } from 'react'
-import styled from 'styled-components'
 import Button from './Button'
 import { Link } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import PlayerInputContainer from './containers/PlayerInputContainer'
-
-const SimpleButton = styled.button`
-  border: 1px solid blue;
-`
+import GameInputContainer from './containers/GameInputContainer'
 
 export default class StartScreen extends Component {
-  static propTypes = {
-    players: PropTypes.arrayOf(PropTypes.object),
-    onDeleteAllPlayers: PropTypes.func,
-    onDeletePlayer: PropTypes.func,
-    onStartGame: PropTypes.func,
-  }
   render() {
-    const { players, onDeletePlayer, onDeleteAllPlayers } = this.props
+    const gameName = 'test GameName'
     return (
       <div>
-        <h1>Score keeper</h1>
-        {players.map((player, index) => (
-          <div data-test-id="StartScreen-player" key={index}>
-            {player.name}
-            <SimpleButton
-              data-test-id="StartScreen-delete-player"
-              onClick={() => onDeletePlayer(index)}
-            >
-              x{/*&times;*/}
-            </SimpleButton>
-          </div>
-        ))}
-        <PlayerInputContainer />
-        {this.renderWarningOrPlaybutton()}
-        <SimpleButton
-          data-test-id="StartScreen-delete-all"
-          onClick={onDeleteAllPlayers}
-        >
-          Delete all Players
-        </SimpleButton>
-      </div>
-    )
-  }
+        <h1>{gameName} - Start Screen</h1>
 
-  renderWarningOrPlaybutton() {
-    const { players, onStartGame } = this.props
-    return players.length ? (
-      <Link to="/summary" style={{ textDecoration: 'none' }}>
-        <Button onClick={onStartGame}>Play!</Button>
-      </Link>
-    ) : (
-      <h2 data-test-id="StartScreen-hint">
-        Please add one player and hit Enter-Button
-      </h2>
+        <GameInputContainer type="text" />
+        <Link to="/setup" style={{ textDecoration: 'none' }}>
+          <Button>New Game</Button>
+        </Link>
+      </div>
     )
   }
 }

@@ -7,14 +7,14 @@ describe('App', () => {
   })
 
   it('starts without player', () => {
-    cy.get('[data-test-id="StartScreen-player"]').should('not.exist')
+    cy.get('[data-test-id="SetupScreen-player"]').should('not.exist')
     cy.get('input').should('have.attr', 'placeholder', 'Name')
   })
 
   it('starts without play button, but with hint text', () => {
-    cy.get('[data-test-id="StartScreen-button"]').should('not.exist')
+    cy.get('[data-test-id="SetupScreen-button"]').should('not.exist')
 
-    cy.get('[data-test-id="StartScreen-hint"]').should(
+    cy.get('[data-test-id="SetupScreen-hint"]').should(
       'contain',
       'Please add one player and hit Enter-Button'
     )
@@ -28,7 +28,7 @@ describe('App', () => {
     })
 
     it('has a player', () => {
-      cy.get('[data-test-id="StartScreen-player"]').should('contain', 'John')
+      cy.get('[data-test-id="SetupScreen-player"]').should('contain', 'John')
     })
 
     it('has a play button', () => {
@@ -38,14 +38,14 @@ describe('App', () => {
     })
 
     it('deletes all players', () => {
-      cy.get('[data-test-id="StartScreen-delete-all"]')
+      cy.get('[data-test-id="SetupScreen-delete-all"]')
         .contains('Delete all Players')
         .should('exist')
     })
 
     it('can delete a player', () => {
-      cy.get('[data-test-id="StartScreen-delete-player"]').click()
-      cy.get('[data-test-id="StartScreen-player"]').should('not.exist')
+      cy.get('[data-test-id="SetupScreen-delete-player"]').click()
+      cy.get('[data-test-id="SetupScreen-player"]').should('not.exist')
     })
 
     it('navigates to next screen', () => {
@@ -67,15 +67,15 @@ describe('App', () => {
     })
 
     it('has two players', () => {
-      cy.get('[data-test-id="StartScreen-player"]').should('contain', 'John')
-      cy.get('[data-test-id="StartScreen-player"]').should('contain', 'Jane')
+      cy.get('[data-test-id="SetupScreen-player"]').should('contain', 'John')
+      cy.get('[data-test-id="SetupScreen-player"]').should('contain', 'Jane')
     })
 
     it('can delete one player', () => {
-      cy.get('[data-test-id="StartScreen-delete-player"]')
+      cy.get('[data-test-id="SetupScreen-delete-player"]')
         .last()
         .click()
-      cy.get('[data-test-id="StartScreen-player"]')
+      cy.get('[data-test-id="SetupScreen-player"]')
         .contains('Jane')
         .should('not.exist')
     })

@@ -10,10 +10,10 @@ export default class SummaryScreen extends Component {
     onBackToStart: PropTypes.func,
   }
   render() {
-    const { players, onBackToStart } = this.props
+    const { players } = this.props
     return (
       <div>
-        <h1>Summary Screen</h1>
+        <h1>(Game name) - Summary Screen</h1>
         {players.map((player, index) => (
           <SummaryCard key={index} title={player.name} scores={player.scores} />
         ))}
@@ -21,8 +21,12 @@ export default class SummaryScreen extends Component {
           <Button>Add round</Button>
         </Link>
 
+        <Link to="/setup" style={{ textDecoration: 'none' }}>
+          <Button>Back to Setup</Button>
+        </Link>
+
         <Link to="/" style={{ textDecoration: 'none' }}>
-          <Button onClick={onBackToStart}>Back to start</Button>
+          <Button>End Game</Button>
         </Link>
       </div>
     )

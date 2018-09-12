@@ -3,6 +3,7 @@ import { createAction } from 'redux-actions'
 const ACTIONS = {
   DELETE_ALL_PLAYERS: 'DELETE_ALL_PLAYERS',
   ADD_PLAYER: 'ADD_PLAYER',
+  ADD_GAME: 'ADD_GAME',
   RESET_SCORES: 'RESET_SCORES',
   RESET_ROUND_SCORES: 'RESET_ROUND_SCORES',
   DELETE_PLAYER: 'DELETE_PLAYER',
@@ -19,6 +20,7 @@ const ACTIONS = {
 
 // verkürzt durch redux-actions
 export const addPlayer = createAction(ACTIONS.ADD_PLAYER)
+export const addGame = createAction(ACTIONS.ADD_GAME)
 export const deletePlayer = createAction(ACTIONS.DELETE_PLAYER)
 export const deleteAllPlayers = createAction(ACTIONS.DELETE_ALL_PLAYERS)
 export const resetScores = createAction(ACTIONS.RESET_SCORES)

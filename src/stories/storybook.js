@@ -9,7 +9,7 @@ import Button from '../components/Button'
 import EditCard from '../components/EditCard'
 import PointButtonBar from '../components/PointButtonBar'
 import GameScreen from '../components/GameScreen'
-import StartScreen from '../components/StartScreen'
+import SetupScreen from '../components/SetupScreen'
 import PlayerHeader from '../components/PlayerHeader'
 import RoundsBar from '../components/RoundsBar'
 import SummaryCard from '../components/SummaryCard'
@@ -58,9 +58,9 @@ storiesOf('EditCard', module)
     />
   ))
 
-storiesOf('StartScreen', module)
+storiesOf('SetupScreen', module)
   .add('no players', () => (
-    <StartScreen
+    <SetupScreen
       players={[]}
       onStartGame={action('onStartGame')}
       onDeleteAllPlayers={action('onDeleteAllPlayers')}
@@ -69,7 +69,7 @@ storiesOf('StartScreen', module)
     />
   ))
   .add('default', () => (
-    <StartScreen
+    <SetupScreen
       players={[{ name: 'John', score: 100 }]}
       onStartGame={action('onStartGame')}
       onDeleteAllPlayers={action('onDeleteAllPlayers')}
