@@ -2,6 +2,7 @@ import ACTIONS from './actions'
 import { load } from './services'
 
 const initialState = {
+  placeholder: 'Just one name, please',
   players: load('players') || [],
 }
 

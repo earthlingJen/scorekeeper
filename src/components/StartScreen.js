@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import PlayerInput from './PlayerInput'
 import Button from './Button'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import PlayerInputContainer from './containers/PlayerInputContainer'
 
 const SimpleButton = styled.button`
   border: 1px solid blue;
@@ -14,16 +14,10 @@ export default class StartScreen extends Component {
     players: PropTypes.arrayOf(PropTypes.object),
     onDeleteAllPlayers: PropTypes.func,
     onDeletePlayer: PropTypes.func,
-    onAddPlayer: PropTypes.func,
     onStartGame: PropTypes.func,
   }
   render() {
-    const {
-      players,
-      onDeletePlayer,
-      onAddPlayer,
-      onDeleteAllPlayers,
-    } = this.props
+    const { players, onDeletePlayer, onDeleteAllPlayers } = this.props
     return (
       <div>
         <h1>Score keeper</h1>
@@ -38,7 +32,7 @@ export default class StartScreen extends Component {
             </SimpleButton>
           </div>
         ))}
-        <PlayerInput onSubmit={onAddPlayer} />
+        <PlayerInputContainer />
         {this.renderWarningOrPlaybutton()}
         <SimpleButton
           data-test-id="StartScreen-delete-all"

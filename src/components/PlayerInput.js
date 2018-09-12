@@ -30,7 +30,7 @@ export default class PlayerInput extends Component {
           onChange={this.updateInputValue}
           onKeyUp={this.checkForEnterButton}
           autoFocus
-          placeholder="Name"
+          placeholder={'Name'}
           value={this.state.inputValue}
           type="text"
           style={{ border: '1px solid orange' }}
